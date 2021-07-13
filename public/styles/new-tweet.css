@@ -1,0 +1,40 @@
+.new-tweet textarea {
+  height: 1.7em;
+  background: none;
+  border: none;
+  border-bottom: 0.15em solid #545149;
+  vertical-align: top;
+  resize: none;
+  width: 100%;
+  font-weight: 600;
+}
+
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.new-tweet footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 0;
+  font-family: bungee, sans-serif;
+}
+
+.new-tweet button {
+  color: #f4f1ec;
+  border: none;
+  background-color: #4056a1;
+  padding: 0.2em 0.5em;
+}
+
+.counter {
+  padding: 0 0.3em;
+}
