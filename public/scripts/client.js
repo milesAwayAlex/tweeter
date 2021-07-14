@@ -31,7 +31,17 @@ const data = [
 
 const createTweetElement = (tweet) => {
   const $tweet = $(
-    `<article class="tweet"><header class="tweet-header"><div class="user"><img src="${tweet.user.avatars}" alt="user avatar"><span class="username">${tweet.user.name}</span></div><div><span class="handle">${tweet.user.handle}</span></div></header><p class="tweet-content">${tweet.content.text}</p><footer class="tweet-footer"><div><span class="date">${tweet.created_at}</span></div><div class="icon-row"><i class="fas fa-flag"></i><i class="fas fa-retweet"></i><i class="fas fa-heart"></i></div></footer></article>`,
+    `<article class="tweet"><header class="tweet-header"><div class="user"><img src="${
+      tweet.user.avatars
+    }" alt="user avatar"><span class="username">${
+      tweet.user.name
+    }</span></div><div><span class="handle">${
+      tweet.user.handle
+    }</span></div></header><p class="tweet-content">${
+      tweet.content.text
+    }</p><footer class="tweet-footer"><div><span class="date">${timeago.format(
+      tweet.created_at,
+    )}</span></div><div class="icon-row"><i class="fas fa-flag"></i><i class="fas fa-retweet"></i><i class="fas fa-heart"></i></div></footer></article>`,
   );
   return $tweet;
 };
