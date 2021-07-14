@@ -6,6 +6,12 @@
 
 const endpoint = '/tweets';
 
+const escape = (str) => {
+  const div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 const createTweetElement = (tweet) => {
   const $tweet = $(
     `<article class="tweet"><header class="tweet-header"><div class="user"><img src="${
@@ -14,9 +20,9 @@ const createTweetElement = (tweet) => {
       tweet.user.name
     }</span></div><div><span class="handle">${
       tweet.user.handle
-    }</span></div></header><p class="tweet-content">${
-      tweet.content.text
-    }</p><footer class="tweet-footer"><div><span class="date">${timeago.format(
+    }</span></div></header><p class="tweet-content">${escape(
+      tweet.content.text,
+    )}</p><footer class="tweet-footer"><div><span class="date">${timeago.format(
       tweet.created_at,
     )}</span></div><div class="icon-row"><i class="fas fa-flag"></i><i class="fas fa-retweet"></i><i class="fas fa-heart"></i></div></footer></article>`,
   );
