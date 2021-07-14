@@ -4,7 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const data = [
+const tweetArr = [
   {
     user: {
       name: 'Newton',
@@ -51,6 +51,13 @@ const renderTweets = (tweets, container) => {
   container.append($tweets);
 };
 
+const submitAsync = (e) => {
+  e.preventDefault();
+  const data = $(e.target).serialize();
+  $.ajax('/tweets', { method: 'POST', data });
+};
+
 $(document).ready(() => {
-  renderTweets(data, $('#tweets-container'));
+  renderTweets(tweetArr, $('#tweets-container'));
+  $('#tweet-form').on('submit', submitAsync);
 });
