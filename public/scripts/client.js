@@ -24,8 +24,10 @@ const createTweetElement = (tweet) => {
 };
 
 const renderTweets = (tweets, container) => {
-  const $tweets = tweets.map((t) => createTweetElement(t));
-  container.append($tweets);
+  const $tweets = tweets
+    .sort((a, b) => b.created_at - a.created_at)
+    .map((t) => createTweetElement(t));
+  container.html($tweets);
 };
 
 const loadTweets = () => $.ajax(endpoint);
@@ -42,7 +44,11 @@ const submitAsync = (e) => {
     );
   }
   const data = $(e.target).serialize();
-  $.ajax(endpoint, { method: 'POST', data });
+  $.ajax(endpoint, { method: 'POST', data })
+    .then(() => loadTweets())
+    .then((tweetArr) => renderTweets(tweetArr, $('#tweets-container')));
+  $(e.target[0]).val('');
+  $(e.target[2]).text(charLimit);
 };
 
 $(document).ready(() => {
