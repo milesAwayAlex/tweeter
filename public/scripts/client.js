@@ -32,6 +32,15 @@ const loadTweets = () => $.ajax(endpoint);
 
 const submitAsync = (e) => {
   e.preventDefault();
+  const twLen = e.target[0].value.length;
+  if (twLen === 0) {
+    return alert('Your tweet appears to be empty. Please write something');
+  }
+  if (twLen > charLimit) {
+    return alert(
+      `Your tweet is ${twLen} characters long, while the limit is ${charLimit}.`,
+    );
+  }
   const data = $(e.target).serialize();
   $.ajax(endpoint, { method: 'POST', data });
 };
