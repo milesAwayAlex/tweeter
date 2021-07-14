@@ -4,7 +4,7 @@
   border: none;
   border-bottom: 0.15em solid #545149;
   vertical-align: top;
-  resize: none;
+  resize: vertical;
   width: 100%;
   font-weight: 600;
 }
@@ -37,4 +37,8 @@
 
 .counter {
   padding: 0 0.3em;
+}
+
+.red {
+  color: red;
 }
