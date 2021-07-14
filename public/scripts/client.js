@@ -4,30 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-const tweetArr = [
-  {
-    user: {
-      name: 'Newton',
-      avatars: 'https://i.imgur.com/73hZDYK.png',
-      handle: '@SirIsaac',
-    },
-    content: {
-      text: 'If I have seen further it is by standing on the shoulders of giants',
-    },
-    created_at: 1461116232227,
-  },
-  {
-    user: {
-      name: 'Descartes',
-      avatars: 'https://i.imgur.com/nlhLi3I.png',
-      handle: '@rd',
-    },
-    content: {
-      text: 'Je pense, donc je suis',
-    },
-    created_at: 1461113959088,
-  },
-];
+const endpoint = '/tweets';
 
 const createTweetElement = (tweet) => {
   const $tweet = $(
@@ -51,13 +28,16 @@ const renderTweets = (tweets, container) => {
   container.append($tweets);
 };
 
+const loadTweets = () => $.ajax(endpoint);
+
 const submitAsync = (e) => {
   e.preventDefault();
   const data = $(e.target).serialize();
-  $.ajax('/tweets', { method: 'POST', data });
+  $.ajax(endpoint, { method: 'POST', data });
 };
 
 $(document).ready(() => {
-  renderTweets(tweetArr, $('#tweets-container'));
   $('#tweet-form').on('submit', submitAsync);
+  loadTweets().then((tweetArr) =>
+    renderTweets(tweetArr, $('#tweets-container')));
 });
