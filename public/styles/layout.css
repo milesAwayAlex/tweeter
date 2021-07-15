@@ -31,3 +31,18 @@ main {
   margin: auto;
   padding: 2em 0;
 }
+
+.content {
+  padding-top: 5em;
+}
+
+@media (min-width: 960px) {
+  .content {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .container {
+    width: 60%;
+    padding: 1em;
+  }
+}

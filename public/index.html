@@ -61,43 +61,45 @@
         </div>
       </div>
     </nav>
-    <header class="signed-in-user">
-      <div>
-        <img src="/images/profile-hex.png" />
-      </div>
-      <div>
-        <h2>Marie Curie</h2>
-      </div>
-    </header>
-
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet" id="new-tweet">
-        <div class="error">
-          <i class="fas fa-exclamation-triangle"></i
-          ><span id="error-text">Please not err</span>
+    <div class="content">
+      <header class="signed-in-user">
+        <div>
+          <img src="/images/profile-hex.png" />
         </div>
-        <form id="tweet-form" action="/tweets" method="POST">
-          <label for="tweet-text" class="visuallyhidden"
-            >What are you humming about?</label
-          >
-          <textarea
-            name="text"
-            id="tweet-text"
-            placeholder="What are you humming about?"
-          ></textarea>
-          <footer>
-            <button type="submit">Tweet</button>
-            <output
-              id="counter"
-              name="counter"
-              class="counter"
-              for="tweet-text"
-            ></output>
-          </footer>
-        </form>
-      </section>
-      <section id="tweets-container"></section>
-    </main>
+        <div>
+          <h2>Marie <span class="lastname">Curie</span></h2>
+        </div>
+      </header>
+
+      <!-- Page-specific (main) content here -->
+      <main class="container">
+        <section class="new-tweet" id="new-tweet">
+          <div class="error">
+            <i class="fas fa-exclamation-triangle"></i
+            ><span id="error-text">Please not err</span>
+          </div>
+          <form id="tweet-form" action="/tweets" method="POST">
+            <label for="tweet-text" class="visuallyhidden"
+              >What are you humming about?</label
+            >
+            <textarea
+              name="text"
+              id="tweet-text"
+              placeholder="What are you humming about?"
+            ></textarea>
+            <footer>
+              <button type="submit">Tweet</button>
+              <output
+                id="counter"
+                name="counter"
+                class="counter"
+                for="tweet-text"
+              ></output>
+            </footer>
+          </form>
+        </section>
+        <section id="tweets-container"></section>
+      </main>
+    </div>
   </body>
 </html>

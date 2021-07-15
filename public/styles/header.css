@@ -1,5 +1,5 @@
 .signed-in-user {
-  margin-top: 5em;
+  /* margin-top: 5em; */
   width: 100%;
   background-color: #bb5a00;
   color: #f4f1ec;
@@ -9,4 +9,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.lastname {
+  font-weight: 300;
+}
+
+@media (min-width: 960px) {
+  .signed-in-user {
+    width: 40%;
+  }
 }
