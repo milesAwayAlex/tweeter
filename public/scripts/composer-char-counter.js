@@ -1,5 +1,3 @@
-const charLimit = 140;
-
 $(document).ready(() => {
   const counter = $('#counter');
   counter.text(charLimit);

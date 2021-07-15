@@ -51,7 +51,7 @@
   display: none;
 }
 
-#error-text {
+.error span {
   padding-left: 0.7em;
   font-weight: 600;
 }

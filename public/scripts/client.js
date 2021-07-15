@@ -6,6 +6,7 @@
 
 const endpoint = '/tweets';
 const animTime = 300;
+const charLimit = 140;
 
 const escape = (str) => {
   const div = document.createElement('div');
@@ -62,7 +63,7 @@ const submitAsync = async (e) => {
     $errText.text(
       `Your tweet is ${twLen} characters long, while the limit is ${charLimit}.`,
     );
-    $errMess.slideToggle('fast');
+    $errMess.slideToggle(animTime);
     return;
   }
   const data = $(e.target).serialize();
@@ -73,7 +74,15 @@ const submitAsync = async (e) => {
   $(e.target[2]).text(charLimit);
 };
 
+const toggleNewTweet = () => {
+  $('#new-tweet').slideToggle(animTime, () => {
+    $('#tweet-text').focus();
+  });
+};
+
 $(document).ready(() => {
+  $('#new-tweet').hide();
+  $('.new-tweet-btn').on('click', toggleNewTweet);
   $('#tweet-form').on('submit', submitAsync);
   loadTweets().then((tweetArr) =>
     renderTweets(tweetArr, $('#tweets-container')));
