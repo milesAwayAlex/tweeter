@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
-    "local": "nodemon --watch server -e js server/index.js"
+    "local": "nodemon --watch server -e js server/index.js",
+    "sass": "sass sass:public/styles --no-source-map",
+    "sass-watch": "sass sass:public/styles --watch --no-source-map"
   },
   "author": "Lighthouse Labs",
   "license": "ISC",
@@ -17,6 +19,7 @@
     "md5": "^2.1.0"
   },
   "devDependencies": {
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "sass": "^1.35.2"
   }
 }
