@@ -42,3 +42,16 @@
 .red {
   color: red;
 }
+
+.error {
+  border: 0.15em solid firebrick;
+  margin-bottom: 0.7em;
+  padding: 0.7em;
+  color: firebrick;
+  display: none;
+}
+
+#error-text {
+  padding-left: 0.7em;
+  font-weight: 600;
+}

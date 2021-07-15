@@ -5,6 +5,7 @@
  */
 
 const endpoint = '/tweets';
+const animTime = 300;
 
 const escape = (str) => {
   const div = document.createElement('div');
@@ -38,16 +39,31 @@ const renderTweets = (tweets, container) => {
 
 const loadTweets = () => $.ajax(endpoint);
 
-const submitAsync = (e) => {
+const slide = ($el, dur) =>
+  new Promise((resolve) => $el.slideToggle(dur, resolve));
+
+const submitAsync = async (e) => {
   e.preventDefault();
+  const $errMess = $('.error');
+  const $errText = $('#error-text');
+  let animation;
+  if ($errMess.is(':visible')) {
+    animation = slide($errMess, animTime);
+  }
   const twLen = e.target[0].value.length;
   if (twLen === 0) {
-    return alert('Your tweet appears to be empty. Please write something');
+    await animation;
+    $errText.text('Your tweet appears to be empty. Please write something');
+    $errMess.slideToggle(animTime);
+    return;
   }
   if (twLen > charLimit) {
-    return alert(
+    await animation;
+    $errText.text(
       `Your tweet is ${twLen} characters long, while the limit is ${charLimit}.`,
     );
+    $errMess.slideToggle('fast');
+    return;
   }
   const data = $(e.target).serialize();
   $.ajax(endpoint, { method: 'POST', data })
