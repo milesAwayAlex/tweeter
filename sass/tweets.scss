@@ -1,11 +1,13 @@
+@use 'vars';
+
 .tweet {
-  border: 0.15em solid #545149;
+  border: 0.15em solid vars.$gray;
   padding: 0.3em;
   margin-bottom: 1em;
 }
 
 .tweet:hover {
-  box-shadow: 0.3em 0.3em #ccd;
+  box-shadow: 0.3em 0.3em vars.$shadow;
 }
 
 .tweet-header {
@@ -27,7 +29,7 @@
 
 .handle {
   font-weight: 600;
-  color: #ccd;
+  color: vars.$shadow;
 }
 
 .tweet-content {
@@ -37,7 +39,7 @@
 }
 
 .tweet-footer {
-  border-top: 0.15em solid #545149;
+  border-top: 0.15em solid vars.$gray;
   padding: 0.3em 0.7em;
   display: flex;
   justify-content: space-between;
@@ -50,7 +52,7 @@
 }
 
 .icon-row .fas {
-  color: #4056a1;
+  color: vars.$main;
   padding-right: 0.3em;
   font-size: 0.7em;
 }

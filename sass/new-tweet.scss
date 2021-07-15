@@ -1,8 +1,10 @@
+@use 'vars';
+
 .new-tweet textarea {
   height: 1.7em;
   background: none;
   border: none;
-  border-bottom: 0.15em solid #545149;
+  border-bottom: 0.15em solid vars.$gray;
   vertical-align: top;
   resize: vertical;
   width: 100%;
@@ -25,13 +27,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5em 0 2em 0;
-  font-family: bungee, sans-serif;
+  font-family: vars.$brand-font;
 }
 
 .new-tweet button {
-  color: #f4f1ec;
+  color: vars.$offwhite;
   border: none;
-  background-color: #4056a1;
+  background-color: vars.$main;
   padding: 0.2em 0.5em;
 }
 
