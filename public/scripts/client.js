@@ -8,12 +8,14 @@ const endpoint = '/tweets';
 const animTime = 300;
 const charLimit = 140;
 
+// html escape for user input - to prevent XSS
 const escape = (str) => {
   const div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
+// generate the layout from a tweet object
 const createTweetElement = (tweet) => {
   const $tweet = $(
     `<article class="tweet"><header class="tweet-header"><div class="user"><img src="${
@@ -31,6 +33,7 @@ const createTweetElement = (tweet) => {
   return $tweet;
 };
 
+// generate and render the tweets
 const renderTweets = (tweets, container) => {
   const $tweets = tweets
     .sort((a, b) => b.created_at - a.created_at)
@@ -40,24 +43,30 @@ const renderTweets = (tweets, container) => {
 
 const loadTweets = () => $.ajax(endpoint);
 
+// promisify the $.stideToggle for use in UI
 const slide = ($el, dur) =>
   new Promise((resolve) => $el.slideToggle(dur, resolve));
 
+// submit new tweet logic
 const submitAsync = async (e) => {
   e.preventDefault();
   const $errMess = $('.error');
   const $errText = $('#error-text');
   let animation;
+  // if the error message is shown - hide it
   if ($errMess.is(':visible')) {
     animation = slide($errMess, animTime);
   }
+  // check the tweet length
   const twLen = e.target[0].value.length;
+  // if length is 0 - show the error message
   if (twLen === 0) {
     await animation;
     $errText.text('Your tweet appears to be empty. Please write something');
     $errMess.slideToggle(animTime);
     return;
   }
+  // if length is over the limit - show the error message
   if (twLen > charLimit) {
     await animation;
     $errText.text(
@@ -66,20 +75,25 @@ const submitAsync = async (e) => {
     $errMess.slideToggle(animTime);
     return;
   }
+  // if the length is correct - submit via AJAX
   const data = $(e.target).serialize();
   $.ajax(endpoint, { method: 'POST', data })
+    // re-render the tweets
     .then(() => loadTweets())
     .then((tweetArr) => renderTweets(tweetArr, $('#tweets-container')));
+  // reset the form
   $(e.target[0]).val('');
   $(e.target[2]).text(charLimit);
 };
 
+// show the new tweet form
 const toggleNewTweet = () => {
   $('#new-tweet').slideToggle(animTime, () => {
     $('#tweet-text').focus();
   });
 };
 
+// attach the event handlers
 $(document).ready(() => {
   $('#new-tweet').hide();
   $('.new-tweet-btn').on('click', toggleNewTweet);
